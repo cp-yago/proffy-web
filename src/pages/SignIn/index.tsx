@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useCallback, useState, FormEvent } from 'react';
+import { Link, useHistory } from 'react-router-dom';
+import * as Yup from 'yup';
+import { useAuth } from '../../hooks/auth';
 
 import {
   Container,
@@ -28,9 +30,46 @@ import logoImg from '../../assets/images/logo.svg';
 import purpleHeartIcon from '../../assets/images/icons/purple-heart.svg';
 
 const SignIn: React.FC = () => {
+  const { signIn } = useAuth();
+  const history = useHistory();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
+
+  const handleSignIn = useCallback(async (event: FormEvent) => {
+    event.preventDefault();
+
+    const data = {
+      email,
+      password,
+      rememberMe,
+    };
+
+    try {
+      const schema = Yup.object().shape({
+        email: Yup.string()
+          .required('E-mail obrigatório')
+          .email('Digite um e-mail válido'),
+        password: Yup.string().min(6, 'A senha deve ter no minimo 6 digitos'),
+        rememberMe: Yup.boolean(),
+      });
+
+      await schema.validate(data, {
+        abortEarly: false,
+      });
+
+      await signIn({
+        email: data.email,
+        password: data.password,
+        rememberMe: data.rememberMe,
+      });
+
+      history.push('landing');
+    } catch (err) {
+      alert('Erro no login, tente novamente');
+    }
+  }, [email, history, password, rememberMe, signIn]);
 
   return (
     <Container>
@@ -73,7 +112,7 @@ const SignIn: React.FC = () => {
             </Rememberme>
             <Link to="forgot-password">Esqueci minha senha</Link>
           </FormFooter>
-          <SubmitButton>Entrar</SubmitButton>
+          <SubmitButton onClick={handleSignIn}>Entrar</SubmitButton>
         </Form>
 
         <Footer>
