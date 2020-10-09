@@ -87,13 +87,12 @@ export const Checkbox = styled.input``;
 
 export const Footer = styled.div`
   width: 35rem;
-  margin-top: 20rem;
+  margin-top: 5rem;
   margin-bottom: 10rem;
 
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-
 `;
 
 export const SignUpContainer = styled.div`
