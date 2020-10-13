@@ -46,68 +46,109 @@ export const Container = styled.div`
         color: var(--color-text-title);
       }
 
-      .user-data {
+      .class-data {
         display: flex;
         flex-direction: row;
-        align-items: center;
         justify-content: space-between;
-        margin: 32px 0;
+        margin-top: 40px;
 
-        .user-data-main {
-          flex-direction: column;
-          width: 50%;
-
-          div {
-            label {
-              top: 30%;
-              font: 400 16px Poppins;
-              line-height: 24px;
-              color: var(--color-text-complement);
-            }
-          }
-
-          div + div {
-            margin-top: 8px;
+        div {
+            width: 62.5%;
+          & + div {
+            width: 35%;
           }
         }
       }
 
-      .user-bio {
+      .class-schedule {
         margin-top: 64px;
-        position: relative;
-        width: 100%;
-        height: 20rem;
-        border-radius: 8px;
-        background: var(--color-box-footer);
-        border: 0.1rem solid var(--color-line-in-white);
 
-        label {
-          position: absolute;
-          top: 10%;
-          left: 5%;
-          display: block;
-          font-size: 14px;
-          line-height: 24px;
-          font: 400 16px Poppins;
-          color: var(--color-text-complement);
+        header {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
 
-          &.filled {
-            opacity: 0;
-            pointer-events: none;
+          button {
+            display: flex;
+            background-color: transparent;
+            border: 0;
+            color: var(--color-primary);
+            text-decoration: none;
+            cursor: pointer;
+            font: 600 1.6rem Archivo;
+
+            transition: opacity 0.1s;
+
+            &:hover {
+              opacity: 0.8;
+            }
           }
         }
 
-        textarea {
-          width: 100%;
-          border: none;
-          outline: none;
-          background: transparent;
-          height: 100%;
-          padding: 5%;
-          font-size: 16px;
-          line-height: 26px;
-          color: var(--color-text-base);
+        .class-schedule-content {
+          display: flex;
+          flex-direction: column;
+
+          .class-schedule-item {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 32px;
+
+            .info {
+              display: flex;
+              flex-direction: row;
+              justify-content: space-between;
+              align-items: center;
+              margin-top: 32px;
+
+              div {
+                width: 22.5%;
+              }
+
+              div:first-child {
+                width: 50%;
+              }
+            }
+
+            .delete-schedule-container {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              margin-top: 24px;
+
+              button {
+                width: 30%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: transparent;
+                border: 0;
+                color: #E33D3D;
+                text-decoration: none;
+                cursor: pointer;
+                font: 600 1.6rem Archivo;
+
+                transition: opacity 0.1s;
+
+                &:hover {
+                  opacity: 0.8;
+                }
+              }
+
+              .divider {
+                width: 30%;
+                height: 1px;
+                background: #e6e6f0;
+              }
+            }
+          }
         }
+      }
+
+      .no-schedule-registered {
+        margin: auto;
+        text-align: center;
       }
     }
 
@@ -147,49 +188,6 @@ export const Container = styled.div`
       }
     }
   }
-
-  @media(max-width: 1000px) {
-
-    .intro-container {
-    padding: 0 10% 80px;
-    }
-
-    form {
-      margin: -48px 10% 64px;
-      text-align: center;
-
-      main {
-        padding: 32px 10%;
-
-        .user-data {
-          flex-direction: column;
-
-          margin-top: 32px;
-
-          .user-data-main {
-            margin-left: 0;
-
-            div {
-              margin-bottom: 0;
-              margin-top: 32px;
-            }
-          }
-        }
-      }
-
-      footer {
-        flex-direction: column;
-
-        div {
-          text-align: left;
-        }
-
-        button {
-          margin-top: 32px;
-        }
-      }
-    }
-  }
 `;
 
 export const SectionDivider = styled.div`
@@ -197,19 +195,6 @@ export const SectionDivider = styled.div`
   height: 1px;
   background: #e6e6f0;
   margin: 10px 0;
-`;
-
-export const Avatar = styled.div`
-width: 50%;
-
-  img {
-    width: 20rem;
-    border-radius: 50%;
-
-    @media(max-width: 1000px) {
-      width: 15rem;
-    }
-  }
 `;
 
 export const Header = styled.header`

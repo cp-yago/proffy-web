@@ -14,8 +14,6 @@ import {
   Legend,
   InputsContainer,
   FormFooter,
-  Rememberme,
-  Checkbox,
   Footer,
   SignUpContainer,
   SignUpLabel,
@@ -76,7 +74,11 @@ const SignIn: React.FC = () => {
       <IntroContainer>
         <Intro>
           <LogoImg src={logoImg} />
-          <IntroText>Sua plataforma de estudos online</IntroText>
+          <IntroText>
+            Sua plataforma de
+            <br />
+            estudos online
+          </IntroText>
         </Intro>
       </IntroContainer>
 
@@ -94,22 +96,12 @@ const SignIn: React.FC = () => {
             <CustomizedInput
               type="password"
               name="password"
-              password
               label="Senha"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
           </InputsContainer>
           <FormFooter>
-            <Rememberme>
-              <Checkbox
-                type="checkbox"
-                name="rememberme"
-                checked={rememberMe}
-                onChange={(e) => setRememberMe(e.target.checked)}
-              />
-              Lembrar-me
-            </Rememberme>
             <Link to="forgot-password">Esqueci minha senha</Link>
           </FormFooter>
           <SubmitButton onClick={handleSignIn}>Entrar</SubmitButton>

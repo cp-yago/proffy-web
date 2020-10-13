@@ -37,17 +37,30 @@ export const FormTitle = styled.legend`
 `;
 
 export const FormSubTitle = styled.span`
-  color: var(-color-text-base);
+  color: var(--color-text-base);
   font: 400 1.6rem Poppins;
   line-height: 2.6rem;
   margin-bottom: 4rem;
 `;
 
 export const InputBorder = styled.div`
-  border-radius: 0.8rem 0.8rem 0 0;
+  border-radius: 0.8rem;
 
-  &:last-child {
-    border-radius: 0 0 0.8rem 0.8rem ;
+  div {
+    label {
+      top: 30%;
+      font: 400 16px Poppins;
+      line-height: 24px;
+      color: var(--color-text-complement);
+    }
+  }
+
+  div + div {
+    margin-top: 8px;
+  }
+
+  div:first-child {
+    margin-top: -16px;
   }
 `;
 

@@ -30,14 +30,12 @@ const SignUp: React.FC = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
 
   const handleSignUp = useCallback(async () => {
     const data = {
       name,
       email,
       password,
-      confirm_password: confirmPassword,
     };
 
     try {
@@ -48,10 +46,6 @@ const SignUp: React.FC = () => {
           .email(),
         password: Yup.string()
           .required('Senha é obrigatória'),
-        confirm_password: Yup.string().oneOf(
-          [Yup.ref('password'), undefined],
-          'Senhas não conferem',
-        ),
       });
 
       await schema.validate(data, {
@@ -62,9 +56,9 @@ const SignUp: React.FC = () => {
 
       history.push('signup-success');
     } catch (err) {
-      alert(err.message);
+      alert(`Erro ao realizar cadastro, tente novamente!. Erro: ${err.message}`);
     }
-  }, [name, email, password, confirmPassword, history]);
+  }, [name, email, password, history]);
 
   return (
     <Container>
@@ -105,14 +99,6 @@ const SignUp: React.FC = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               label="Senha"
-            />
-            <CustomizedInput
-              type="password"
-              name="confirm_password"
-              password
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              label="Confirme sua senha"
             />
           </InputBorder>
           <SubmitButton type="submit">Concluir cadastro</SubmitButton>

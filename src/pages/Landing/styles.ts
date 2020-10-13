@@ -43,7 +43,7 @@ export const Avatar = styled.img`
 export const Username = styled.span`
   font: 500 1.4rem Poppins;
   color: var(--color-text-in-primary);
-  margin-left: 2rem;
+  margin-left: 1.5rem;
 `;
 
 export const SignOutButton = styled.button`

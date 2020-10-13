@@ -2,35 +2,45 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   position: relative;
-  padding: 15px 0 0;
-  height: 6.5rem;
   width: 100%;
-  border: 0.1rem solid var(--color-line-in-white);
+  height: 6rem;
   background: var(--color-box-footer);
+  border: 0.1rem solid var(--color-line-in-white);
+  border-radius: 8px;
+
+  .focused {
+    opacity: 0;
+    transition: 0s;
+  }
+`;
+
+export const Label = styled.label`
+  position: absolute;
+  top: -2.5rem;
+  left: 5%;
+  display: block;
+  transition: 0.2s;
+  font-size: 14px;
+  line-height: 24px;
+  pointer-events: none;
 `;
 
 export const Input = styled.input`
   width: 100%;
   height: 100%;
   background: transparent;
-  border: 0;
-  margin-left: 1rem;
-`;
-
-export const Label = styled.label`
-  position: absolute;
-  top: 0;
-  display: block;
-  transition: 0.2s;
-  font-size: 1.6rem;
-  margin-left: 1rem;
-
+  padding: 5%;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  line-height: 26px;
+  color: var(--color-text-base);
 `;
 
 export const EyeButton = styled.button`
   position: absolute;
   right: 1rem;
-  bottom: 2.5rem;
+  top: 12%;
 
   padding: 3px;
 
@@ -41,10 +51,4 @@ export const EyeButton = styled.button`
 
 export const EyeIcon = styled.img`
   margin-bottom: -1rem;
-`;
-
-export const ClosedEye = styled.div`
-  width: 1.8rem;
-  height: 0.2rem;
-  background: var(--color-text-complement);
 `;

@@ -1,12 +1,15 @@
 import React, { ChangeEvent, useCallback, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import * as Yup from 'yup';
 
 import api from '../../services/api';
 import { useAuth } from '../../hooks/auth';
 
-import { Container, SectionDivider, Avatar } from './styles';
+import {
+  Container, Header, GobackIcon, SectionDivider, Avatar,
+} from './styles';
 import warningIcon from '../../assets/images/icons/warning.svg';
+import backIcon from '../../assets/images/icons/back.svg';
 import CustomizedInput from '../../components/CustomizedInput';
 import SubmitButton from '../../components/SubmitButton';
 
@@ -44,7 +47,7 @@ const Profile: React.FC = () => {
 
       const response = await api.put('/users', data);
 
-      history.push('/dashboard');
+      history.push('/');
 
       updateUser(response.data);
     } catch {
@@ -74,6 +77,12 @@ const Profile: React.FC = () => {
 
   return (
     <Container className="container">
+      <Header>
+        <Link to="/">
+          <GobackIcon src={backIcon} />
+        </Link>
+        <p>Meu perfil</p>
+      </Header>
       <div className="intro-container">
         <h1>
           Aqui você encontra
@@ -87,7 +96,7 @@ const Profile: React.FC = () => {
         </span>
       </div>
 
-      <form>
+      <form onSubmit={handleUpdateProfile}>
         <main>
           <h1>Seus dados</h1>
           <SectionDivider />
@@ -95,7 +104,6 @@ const Profile: React.FC = () => {
             <Avatar>
               <img src={avatar} alt={name} />
               <label htmlFor="avatar">
-                {/* <FiCamera /> */}
                 <input type="file" id="avatar" onChange={handleUpdateAvatar} />
               </label>
             </Avatar>
@@ -127,10 +135,10 @@ const Profile: React.FC = () => {
           </div>
 
           <div className="user-bio">
-            <CustomizedInput
-              type="text"
+            <label className={bio ? 'filled' : ''} htmlFor="bio">Biografia</label>
+            <textarea
               name="bio"
-              label="Biografia"
+              id="bio"
               value={bio}
               onChange={(e) => setBio(e.target.value)}
             />
@@ -148,7 +156,7 @@ const Profile: React.FC = () => {
             </p>
           </div>
 
-          <SubmitButton onSubmit={handleUpdateProfile}>Salvar</SubmitButton>
+          <SubmitButton type="submit">Salvar</SubmitButton>
         </footer>
 
       </form>

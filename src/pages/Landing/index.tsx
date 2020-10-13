@@ -1,6 +1,8 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../hooks/auth';
+
+import api from '../../services/api';
 
 import signOutIcon from '../../assets/images/icons/sign-out.svg';
 import logoImg from '../../assets/images/logo.svg';
@@ -39,9 +41,27 @@ import {
 const Landing: React.FC = () => {
   const { user, signOut } = useAuth();
 
+  const [totalConnections, setTotalConnections] = useState(0);
+  const [avatar] = useState(() => {
+    if (user.avatar_url) {
+      return user.avatar_url;
+    }
+    return 'https://m2bob-forum.net/wcf/images/avatars/3e/2720-3e546be0b0701e0cb670fa2f4fcb053d4f7e1ba5.jpg';
+  });
+
   const handleSignOut = useCallback(() => {
     signOut();
   }, [signOut]);
+
+  useEffect(() => {
+    const loadConnections = async () => {
+      const response = await api.get('/connections');
+
+      setTotalConnections(response.data);
+    };
+
+    loadConnections();
+  }, []);
 
   return (
     <Container>
@@ -56,10 +76,10 @@ const Landing: React.FC = () => {
               textDecoration: 'none',
             }}
           >
-            { user.avatar && (
-              <Avatar src={user.avatar_url} />
-            )}
-            <Username>{user.name}</Username>
+
+            <Avatar src={avatar} />
+
+            <Username>Meu perfil</Username>
           </Link>
 
           <SignOutButton onClick={handleSignOut}>
@@ -87,7 +107,11 @@ const Landing: React.FC = () => {
               <WelcomeStrong>O que deseja fazer?</WelcomeStrong>
             </Welcome>
             <TotalConnections>
-              Total de 32 conexões já realizadas
+              Total de
+              {' '}
+              {totalConnections}
+              {' '}
+              conexões já realizadas
               <HeartIcon src={purpleHeartIcon} />
             </TotalConnections>
           </BottomText>

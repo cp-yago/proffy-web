@@ -1,4 +1,6 @@
-import React, { InputHTMLAttributes, useCallback, useState } from 'react';
+import React, {
+  InputHTMLAttributes, useCallback, useState,
+} from 'react';
 
 import {
   Container,
@@ -6,10 +8,10 @@ import {
   Label,
   EyeButton,
   EyeIcon,
-  ClosedEye,
 } from './styles';
 
 import eyeIcon from '../../assets/images/icons/eye.svg';
+import closedEyeIcon from '../../assets/images/icons/closed-eye.svg';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
@@ -19,36 +21,46 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 const CustomizedInput: React.FC<InputProps> = ({
-  name, placeholder, label, password, type, ...rest
+  name, placeholder, label, password, type, value, ...rest
 }) => {
-  const [inputType, setInputType] = useState('password');
-  const [showPassword, setShowPassword] = useState(true);
+  const [showPassword, setShowPassword] = useState(false);
+  const [checkedType, setCheckedType] = useState(type);
+  const [isFocused, setIsFocused] = useState(false);
+  const [isFilled, setIsFilled] = useState(false);
 
-  const toggleShowPassowd = useCallback((event) => {
-    setShowPassword(!showPassword);
-
-    if (!showPassword) {
-      setInputType('text');
+  const toggleShowPassword = useCallback(() => {
+    if (showPassword) {
+      setCheckedType('password');
     } else {
-      setInputType('password');
+      setCheckedType('text');
     }
+
+    setShowPassword(!showPassword);
   }, [showPassword]);
+
+  const handleInputFocus = useCallback(() => {
+    setIsFocused(!isFocused);
+    setIsFilled(!!value);
+  }, [isFocused, value]);
 
   return (
     <Container>
       <Input
         placeholder={placeholder}
         name={name}
-        type={password ? inputType : type}
+        type={checkedType}
+        onFocus={handleInputFocus}
+        onBlur={handleInputFocus}
+        value={value}
         {...rest}
       />
-      <Label>{label}</Label>
-      {password && (
-        <EyeButton type="button" onClick={toggleShowPassowd}>
+      <Label className={isFocused || isFilled || value ? 'focused' : ''}>{label}</Label>
+      {type === 'password' && (
+        <EyeButton type="button" onClick={toggleShowPassword}>
           {
             showPassword
-              ? <EyeIcon src={eyeIcon} />
-              : <ClosedEye />
+              ? <EyeIcon src={closedEyeIcon} />
+              : <EyeIcon src={eyeIcon} />
           }
         </EyeButton>
       )}

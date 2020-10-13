@@ -81,7 +81,7 @@ const ForgotPassword: React.FC = () => {
             <br />
             sua senha?
           </FormTitle>
-          <FormSubTitle>Não esquentam vamos dar um jeito nisso.</FormSubTitle>
+          <FormSubTitle>Não esquenta, vamos dar um jeito nisso.</FormSubTitle>
           <InputBorder>
             <CustomizedInput
               type="text"
@@ -91,7 +91,7 @@ const ForgotPassword: React.FC = () => {
               label="E-mail"
             />
           </InputBorder>
-          <SubmitButton disabled={buttonDisabled} type="submit">Enviar</SubmitButton>
+          <SubmitButton type="submit">Enviar</SubmitButton>
         </Form>
       </ForgotPasswordContainer>
 

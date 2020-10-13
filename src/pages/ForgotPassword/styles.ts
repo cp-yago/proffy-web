@@ -44,8 +44,17 @@ export const FormSubTitle = styled.span`
 `;
 
 export const InputBorder = styled.div`
-  &:first-child {
-    border-radius: 0.8rem;
+  div {
+    label {
+      top: 30%;
+      font: 400 16px Poppins;
+      line-height: 24px;
+      color: var(--color-text-complement);
+    }
+  }
+
+  div:first-child {
+    margin-top: -16px;
   }
 `;
 
