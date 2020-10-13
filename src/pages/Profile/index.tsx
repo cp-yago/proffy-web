@@ -1,4 +1,6 @@
-import React, { ChangeEvent, useCallback, useState } from 'react';
+import React, {
+  ChangeEvent, FormEvent, useCallback, useState,
+} from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import * as Yup from 'yup';
 
@@ -23,7 +25,9 @@ const Profile: React.FC = () => {
   const [whatsapp, setWhatsapp] = useState(() => (user.whatsapp ? user.whatsapp : ''));
   const [bio, setBio] = useState(() => (user.bio ? user.bio : ''));
 
-  const handleUpdateProfile = useCallback(async () => {
+  const handleUpdateProfile = useCallback(async (event: FormEvent) => {
+    event.preventDefault();
+
     try {
       const data = {
         name,

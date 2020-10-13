@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { FormEvent, useCallback, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
 import api from '../../services/api';
@@ -70,7 +70,9 @@ const CreateClass: React.FC = () => {
     [scheduleItems],
   );
 
-  const handleCreateClass = useCallback(async (): Promise<void> => {
+  const handleCreateClass = useCallback(async (event: FormEvent): Promise<void> => {
+    event.preventDefault();
+
     const parsedScheduleItem = scheduleItems.map((scheduleItem) => {
       const { week_day, from, to } = scheduleItem;
 
