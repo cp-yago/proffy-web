@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, FormEvent } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import * as Yup from 'yup';
 
@@ -31,7 +31,9 @@ const SignUp: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSignUp = useCallback(async () => {
+  const handleSignUp = useCallback(async (event: FormEvent) => {
+    event.preventDefault();
+
     const data = {
       name,
       email,
@@ -53,11 +55,10 @@ const SignUp: React.FC = () => {
       });
 
       await api.post('users', data);
-
-      history.push('signup-success');
     } catch (err) {
       alert(`Erro ao realizar cadastro, tente novamente!. Erro: ${err.message}`);
     }
+    history.push('signup-success');
   }, [name, email, password, history]);
 
   return (
