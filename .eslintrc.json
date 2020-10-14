@@ -32,6 +32,9 @@
       "react/jsx-props-no-spreading": "off",
       "react/no-use-before-define": "off",
       "import/prefer-default-export": "off",
+      "no-use-before-define": "off",
+      "no-unused-expressions": "off",
+      "jsx-a11y/label-has-associated-control": "off",
       "import/extensions": [
         "error",
         "ignorePackages",

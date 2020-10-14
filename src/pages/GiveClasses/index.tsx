@@ -93,7 +93,7 @@ const GiveClasses: React.FC = () => {
         <SectionDivider />
         {classes.length > 0 ? (
           classes.map((classItem) => (
-            <>
+            <div key={classItem.id}>
               <div className="class-container" key={classItem.id}>
                 <div className="class-header">
                   <div className="class-info">
@@ -147,7 +147,7 @@ const GiveClasses: React.FC = () => {
                 </div>
               </div>
               <SectionDivider />
-            </>
+            </div>
           ))
         ) : (
           <footer>

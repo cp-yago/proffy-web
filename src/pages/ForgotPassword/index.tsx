@@ -1,5 +1,5 @@
 import React, {
-  useCallback, useState, FormEvent, useEffect,
+  useCallback, useState, FormEvent,
 } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import * as Yup from 'yup';
@@ -29,7 +29,6 @@ import api from '../../services/api';
 const ForgotPassword: React.FC = () => {
   const history = useHistory();
 
-  const [buttonDisabled, setButtonDisabled] = useState(true);
   const [email, setEmail] = useState('');
 
   const handleSubmit = useCallback(async (event: FormEvent) => {
@@ -57,14 +56,6 @@ const ForgotPassword: React.FC = () => {
       alert(err.message);
     }
   }, [email, history]);
-
-  useEffect(() => {
-    if (email) {
-      setButtonDisabled(false);
-    } else {
-      setButtonDisabled(true);
-    }
-  }, [email]);
 
   return (
     <Container>

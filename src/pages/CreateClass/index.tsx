@@ -2,7 +2,6 @@ import React, { FormEvent, useCallback, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
 import api from '../../services/api';
-import { useAuth } from '../../hooks/auth';
 
 import {
   Container, Header, GobackIcon, SectionDivider,

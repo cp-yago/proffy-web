@@ -23,7 +23,7 @@ const Select: React.FC<InputProps> = ({
     <label htmlFor={name}>{label}</label>
     <select name={name} id={name} onChange={onChange}>
       <option defaultValue="">Selecione</option>
-      {options && options.map((option) => <option value={option.label}>{option.value}</option>)}
+      {options && options.map((option) => <option key={`${name}-${option.label}`} value={option.label}>{option.value}</option>)}
     </select>
   </Container>
 );
