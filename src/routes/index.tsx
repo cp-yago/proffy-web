@@ -10,6 +10,7 @@ import SignUp from '../pages/SignUp';
 import SignUpSuccess from '../pages/SignUpSuccess';
 import ForgotPassword from '../pages/ForgotPassword';
 import ForgotPasswordSent from '../pages/ForgotPasswordSent';
+import ResetPassword from '../pages/ResetPassword';
 import GiveClasses from '../pages/GiveClasses';
 import CreateClass from '../pages/CreateClass';
 import ClassList from '../pages/ClassList';
@@ -25,6 +26,7 @@ const Routes: React.FC = () => (
 
     <Route path="/forgot-password" exact component={ForgotPassword} />
     <Route path="/forgot-password-sent" exact component={ForgotPasswordSent} />
+    <Route path="/reset-password" exact component={ResetPassword} />
 
     <Route path="/landing" exact component={Landing} isPrivate />
     <Route path="/give-classes" exact component={GiveClasses} isPrivate />
